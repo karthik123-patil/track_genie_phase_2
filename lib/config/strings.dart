@@ -94,7 +94,7 @@ class AppStrings {
   static const String strPrimaryGuardian = "Primary Guardian";
   static const String strSecondaryGuardian = "Secondary Guardian";
   static const String strAddress = "Address";
-  
+
   //Radio text
   static const String strRadioDriver = "Driver";
   static const String strRadioAttendant = "Attendant";
@@ -191,6 +191,10 @@ class AppStrings {
   static String isStudent = "Student";
   static String isDriver = "Driver";
   static String isAttendant = "Attendant";
+  static String isAdmin = "Admin";
+  static String keyMapRegister = "registerAs";
+  static String keyMapMsg = "msg";
+  static String noInternetMsg = "No Internet Connection";
   static String cardSelectionError = "Please select any one of the card";
 
   static String appLogoImage = "assets/images/app_logo.png";
@@ -200,4 +204,10 @@ class AppStrings {
   static String studentImage = "assets/images/img.png";
   static String driverImage = "assets/images/img_2.png";
   static String attendantImage = "assets/images/img_3.png";
+  static String callImage = "assets/images/call_img.png";
+
+  static const List<String> journeyList = [
+    "Onward Journey",
+    "Backward Journey"
+  ];
 }

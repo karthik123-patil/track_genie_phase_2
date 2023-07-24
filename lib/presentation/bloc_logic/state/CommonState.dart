@@ -23,8 +23,8 @@ class NoDataFoundState extends CommonState {}
 class InternetLostState extends CommonState {}
 
 class ApiSuccessState extends CommonState {
-  final String msg;
-  ApiSuccessState(this.msg);
+  final Map mapData;
+  ApiSuccessState(this.mapData);
 }
 
 class ApiFailState extends CommonState {

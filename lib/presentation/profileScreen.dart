@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
+import 'package:track_genie_phase_2/domain/model/ProfileModel.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_edit_widgets.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_text_style.dart';
 import '../config/constant.dart';
-import '../data/model/ProfileModel.dart';
 import 'bloc_logic/bloc/profile_cubit.dart';
 import 'bloc_logic/state/CommonState.dart';
 

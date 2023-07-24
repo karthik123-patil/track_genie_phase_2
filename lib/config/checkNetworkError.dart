@@ -42,6 +42,6 @@ class CheckNetworkError {
         return "Page not found";
       }
     }
-    return "Something went wrong";
+    return error.message;
   }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
-import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
-import 'package:track_genie_phase_2/presentation/widgets/custom_popups.dart';
+import 'package:track_genie_phase_2/domain/model/DraverItem.dart';
 import '../config/constant.dart';
-import '../data/model/DraverItem.dart';
+
 
 import 'homeScreen.dart';
 

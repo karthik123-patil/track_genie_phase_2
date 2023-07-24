@@ -146,15 +146,13 @@ class RegisterAsScreen extends StatelessWidget{
                               width: 200,
                               height: 50,
                               child: ElevatedButton(
-                                onPressed: () {
-                                  if(state is OnSelectionState){
-                                    Navigator.of(context).pushNamed(routeLogin);
-                                  }else{
-                                    AppUtils().showErrorToastMsg(AppStrings.cardSelectionError);
-                                  }
-                                },
+                                onPressed: state is OnSelectionState ? () {
+                                  // Navigator.of(context).pushNamed(routeLogin);
+                                  Navigator.of(context).pushNamed(routeParentBottom);
+
+                                }:null,
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: state is OnSelectionState ? AppColors.bgColor:AppColors.grey700,
+                                    backgroundColor: AppColors.bgColor,
                                     elevation: 2,
                                     shape: const RoundedRectangleBorder(
                                         borderRadius:
@@ -563,4 +561,3 @@ class RegisterAsScreen extends StatelessWidget{
 //     )) ?? false;
 //   }
 // }
-

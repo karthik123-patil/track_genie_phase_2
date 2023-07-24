@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../data/model/ProfileModel.dart';
 import '../state/CommonState.dart';
 
 class ProfileCubit extends Cubit<CommonState> {

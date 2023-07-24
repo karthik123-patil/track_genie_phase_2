@@ -19,7 +19,7 @@ class Helper {
   // }
 
   static getErrorLog(String error) {
-    // log(error);
+    log(error);
   }
 
   static getToastMsg(String toastMessage) {

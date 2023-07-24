@@ -5,26 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "4897882604d919befd350648c7f91926a9d5de99e67b455bf0917cc2362f4bb8"
+      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
       url: "https://pub.dev"
     source: hosted
-    version: "47.0.0"
+    version: "61.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "690e335554a8385bc9d787117d9eb52c0c03ee207a607e593de3c9d71b1cfe80"
+      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
       url: "https://pub.dev"
     source: hosted
-    version: "4.7.0"
-  analyzer_plugin:
-    dependency: transitive
-    description:
-      name: analyzer_plugin
-      sha256: "02b0046b8b9a4c97a238c66f70acd22eec4263dfc8d9205f9dab5cc8630c5a6f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.1"
+    version: "5.13.0"
   archive:
     dependency: transitive
     description:
@@ -109,10 +101,10 @@ packages:
     dependency: transitive
     description:
       name: build_runner_core
-      sha256: "30859c90e9ddaccc484f56303931f477b1f1ba2bab74aa32ed5d6ce15870f8cf"
+      sha256: "6d6ee4276b1c5f34f21fdf39425202712d2be82019983d52f351c94aafbc2c41"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.8"
+    version: "7.2.10"
   built_collection:
     dependency: transitive
     description:
@@ -137,14 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
-  charcode:
-    dependency: transitive
-    description:
-      name: charcode
-      sha256: fb98c0f6d12c920a02ee2d998da788bca066ca5f148492b7085ee23372b12306
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.1"
   checked_yaml:
     dependency: transitive
     description:
@@ -153,14 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  cli_util:
-    dependency: transitive
-    description:
-      name: cli_util
-      sha256: "66f86e916d285c1a93d3b79587d94bd71984a66aac4ff74e524cfa7877f1395c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -241,22 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  drift:
-    dependency: transitive
-    description:
-      name: drift
-      sha256: "43ae515270f38ffe47702dc920c04d415894bcc6ebdf3e2b6a292cb207ed8cb7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.1"
-  drift_dev:
-    dependency: transitive
-    description:
-      name: drift_dev
-      sha256: "7d51538da971823a158236823cfb299731f720cd55078c6a478bfa4effb69275"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.1"
   fake_async:
     dependency: transitive
     description:
@@ -441,18 +401,18 @@ packages:
     dependency: transitive
     description:
       name: json_annotation
-      sha256: "3520fa844009431b5d4491a5a778603520cdc399ab3406332dcc50f93547258c"
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
       url: "https://pub.dev"
     source: hosted
-    version: "4.7.0"
+    version: "4.8.1"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
-      sha256: f3c2c18a7889580f71926f30c1937727c8c7d4f3a435f8f5e8b0ddd25253ef5d
+      sha256: aa1f5a8912615733e0fdc7a02af03308933c93235bdc8d50d0b0c8a8ccb0b969
       url: "https://pub.dev"
     source: hosted
-    version: "6.5.4"
+    version: "6.7.1"
   lints:
     dependency: transitive
     description:
@@ -525,22 +485,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
-  moor:
-    dependency: transitive
-    description:
-      name: moor
-      sha256: "3c9500ebb0996592480728a5480e020c881110597416b9f3c6f72e57212bd78c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.6.1+1"
-  moor_generator:
-    dependency: "direct dev"
-    description:
-      name: moor_generator
-      sha256: "511df4d32bc6150456024592e4839fb868eda96b49d8c3515e30781eec6bc31d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.6.0+1"
   nested:
     dependency: transitive
     description:
@@ -665,18 +609,10 @@ packages:
     dependency: transitive
     description:
       name: pubspec_parse
-      sha256: "75f6614d6dde2dc68948dffbaa4fe5dae32cd700eb9fb763fe11dfb45a3c4d0a"
+      sha256: c63b2876e58e194e4b0828fcb080ad0e06d051cb607a6be51a9e084f47cb9367
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
-  recase:
-    dependency: transitive
-    description:
-      name: recase
-      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
+    version: "1.2.3"
   retrofit:
     dependency: "direct main"
     description:
@@ -774,18 +710,18 @@ packages:
     dependency: transitive
     description:
       name: source_gen
-      sha256: "2d79738b6bbf38a43920e2b8d189e9a3ce6cc201f4b8fc76be5e4fe377b1c38d"
+      sha256: fc0da689e5302edb6177fdd964efcb7f58912f43c28c2047a808f5bfff643d16
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.6"
+    version: "1.4.0"
   source_helper:
     dependency: transitive
     description:
       name: source_helper
-      sha256: "3b67aade1d52416149c633ba1bb36df44d97c6b51830c2198e934e3fca87ca1f"
+      sha256: "6adebc0006c37dd63fe05bca0a929b99f06402fc95aa35bf36d67f5c06de01fd"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.3"
+    version: "1.3.4"
   source_span:
     dependency: transitive
     description:
@@ -794,22 +730,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  sqlite3:
-    dependency: transitive
-    description:
-      name: sqlite3
-      sha256: "281b672749af2edf259fc801f0fcba092257425bcd32a0ce1c8237130bc934c7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.11.2"
-  sqlparser:
-    dependency: transitive
-    description:
-      name: sqlparser
-      sha256: "9ed8f4a24a2a243e23ad267bb50378cb75c7de0b200b5336229b2d6096e6a5df"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.22.0"
   stack_trace:
     dependency: transitive
     description:
