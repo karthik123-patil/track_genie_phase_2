@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/auth/loginBloc.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/bus_info/bus_info_cubit.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/contacts/parent_contact_bloc.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/notification_setting_bloc.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/student_info_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/status/type_of_journey_bloc.dart';
 import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
 import 'package:track_genie_phase_2/presentation/view/auth/register_as_screen.dart';
@@ -13,6 +16,7 @@ import 'package:track_genie_phase_2/presentation/view/parent/status/type_of_jour
 import 'package:track_genie_phase_2/presentation/view/vehicle_scheduled.dart';
 
 import '../view/auth/login_screen.dart';
+import '../view/parent/settings/notification_settings.dart';
 import 'custom_route.dart';
 
 class Routes {
@@ -39,7 +43,7 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
               create: (context) => LoginBloc(),
-              child: VehicleScheduledScreen()),
+              child: const VehicleScheduledScreen()),
         );
       case routeTypeOfJourney:
         return MaterialPageRoute(
@@ -54,6 +58,8 @@ class Routes {
                     providers: [
                       BlocProvider(
                         create: (context) => ParentContactCubit(),
+                      ), BlocProvider(
+                        create: (context) => BusInfoCubit(),
                       ),
                     ],
                     child: const ParentBottomScreen(
@@ -62,7 +68,15 @@ class Routes {
       case routeStudentInfo:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-              create: (context) => LoginBloc(), child: StudentInformationScreen()),
+              create: (context) => StudentInfoCubit(),
+              child: const StudentInformationScreen()),
+        );
+
+      case routeNotificationSetting:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+              create: (context) => NotificationSettingCubit(),
+              child: const NotificationSettingsScreen()),
         );
     }
     return null;

@@ -95,6 +95,16 @@ class AppStrings {
   static const String strSecondaryGuardian = "Secondary Guardian";
   static const String strAddress = "Address";
 
+  //parent setting
+  static const String settStudentInfo = "Student Information";
+  static const String settStudentDetails = "Your child's information as per school records";
+  static const String settScheduleLeave = "Schedule Leave";
+  static const String settScheduleLeaveDetails = "Schedule your leave preferences";
+  static const String settCancelLeave = "Cancel Scheduled Leave";
+  static const String settCancelLeaveDetails = "Cancel Scheduled your leave preferences";
+  static const String settNotification = "Notification Settings";
+  static const String settNotificationDetails = "Choose your notification preferences";
+
   //Radio text
   static const String strRadioDriver = "Driver";
   static const String strRadioAttendant = "Attendant";
@@ -184,6 +194,9 @@ class AppStrings {
   static String addEvent = "Add Event";
   static String cancel = "Cancel";
   static String ok = "Ok";
+  static String type = "Type";
+  static String remark = "Remark";
+  static String enterTextError = "Please enter some text";
 
   static String strPrefNewLat = "NEW_LAT";
   static String strPrefNewLong = "NEW_LONG";
@@ -195,6 +208,7 @@ class AppStrings {
   static String keyMapRegister = "registerAs";
   static String keyMapMsg = "msg";
   static String noInternetMsg = "No Internet Connection";
+  static String timeOutMsg = "Connection Time out";
   static String cardSelectionError = "Please select any one of the card";
 
   static String appLogoImage = "assets/images/app_logo.png";
@@ -205,6 +219,7 @@ class AppStrings {
   static String driverImage = "assets/images/img_2.png";
   static String attendantImage = "assets/images/img_3.png";
   static String callImage = "assets/images/call_img.png";
+  static String forwardImage = "assets/images/small_forward_img.png";
 
   static const List<String> journeyList = [
     "Onward Journey",

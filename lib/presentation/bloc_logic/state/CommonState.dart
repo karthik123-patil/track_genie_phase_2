@@ -36,3 +36,7 @@ class OnSelectionState extends CommonState{
   final String roleId;
   OnSelectionState(this.roleId);
 }
+
+class TimeOutExceptionState extends CommonState{
+  TimeOutExceptionState();
+}

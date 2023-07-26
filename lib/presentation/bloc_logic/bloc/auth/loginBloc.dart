@@ -11,22 +11,23 @@ import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dar
 import 'package:track_genie_phase_2/domain/repositories/ApiRepository.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/state/CommonState.dart';
 
-import '../../../../config/constant.dart';
 
 import 'login_event.dart';
 
 class LoginBloc extends Bloc<LoginEvent, CommonState> {
+  static bool isFocus = true;
   LoginBloc() : super(InitialState()) {
     on<TextChangeEvent>((event, emit) => {
-          if (event.username == "")
+          if (event.userID == "")
             {emit(ErrorState("Please enter username"))}
-          else if (event.password.isEmpty)
+          else if (event.mobileNumber.isEmpty)
             {emit(ErrorState("Please enter password"))}
           else
             {emit(ValidState())}
         });
 
     on<SubmittedEvent>((event, emit) async {
+      isFocus = false;
       Map mapData = Map();
       await InternetConnectivityCheck.getInstance()
           .chkInternetConnectivity()
@@ -40,9 +41,9 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
             LoginResponse res = await ApiRepository.getInstance("")
                 .authenticateUser(
                     request: request,
-                    uniqueId: "510",
+                    uniqueId: event.userID,
                     roleId: '3',
-                    mobileNo: '5100000000');
+                    mobileNo: event.mobileNumber);
 
 
             if(res.responseStatus == true){
@@ -60,10 +61,17 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
           } on DioError catch (e) {
             String errorData =
                 CheckNetworkError.getInstance().getNetworkError(e);
-            emit(ApiFailState(errorData));
+            if(errorData == "404"){
+              emit(ApiFailState("Invalid User"));
+            } else if(errorData == AppStrings.timeOutMsg){
+              emit(TimeOutExceptionState());
+            }else{
+              emit(ApiFailState(errorData));
+            }
+
           }
         } else {
-          emit(ApiFailState(Constant.noInternetMsg));
+          emit(ApiFailState(AppStrings.noInternetMsg));
         }
       });
     });

@@ -1,14 +1,14 @@
 abstract class LoginEvent {}
 
 class TextChangeEvent extends LoginEvent {
-  final String username;
-  final String password;
-
-  TextChangeEvent(this.username, this.password);
+  final String userID;
+  final String mobileNumber;
+  TextChangeEvent(this.userID, this.mobileNumber);
 }
 
 class SubmittedEvent extends LoginEvent {
-  final String username;
-  final String password;
-  SubmittedEvent(this.username, this.password);
+  final String userID;
+  final String mobileNumber;
+
+  SubmittedEvent(this.userID, this.mobileNumber);
 }

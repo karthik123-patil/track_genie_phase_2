@@ -1,19 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/checkNetworkError.dart';
-import 'package:track_genie_phase_2/config/constant.dart';
 import 'package:track_genie_phase_2/config/internet_conectivity.dart';
+import 'package:track_genie_phase_2/config/shared_preferences.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/domain/repositories/ApiRepository.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/state/CommonState.dart';
 
+import '../../../../../domain/model/response/GetScheduleAndTripById.dart';
+
 class TypeOFJourneyCubit extends Cubit<CommonState> {
   String? selectedValue;
-  TypeOFJourneyCubit() : super(InitialState()) {
-    startTheTrip();
-  }
+
+  TypeOFJourneyCubit() : super(InitialState()) {}
 
   void onJourneySelect(String selectedItem) {
+    if (selectedItem == AppStrings.journeyList[0]) {
+      StorageUtil.instance.setStringValue(AppStrings.strPrefTypeOfJourney, "1");
+    } else {
+      StorageUtil.instance.setStringValue(AppStrings.strPrefTypeOfJourney, "2");
+    }
     emit(OnSelectionState(selectedItem));
   }
 
@@ -24,12 +30,20 @@ class TypeOFJourneyCubit extends Cubit<CommonState> {
       if (value!) {
         try {
           emit(LoadingState());
-          dynamic res = await ApiRepository.getInstance("")
-              .getVehicleScheduleIDAndTripIDofStudentCorrespondingToGivenTypeOfJourney(userId: '', typeOfJourneyId: '');
-          // emit(ApiSuccessState("mapData"));
+          String typeOfJourneyId = await StorageUtil.instance.getStringValue(AppStrings.strPrefTypeOfJourney);
+          String userId = await StorageUtil.instance.getStringValue(AppStrings.strPrefUserId);
+
+          GetScheduleAndTripById res = await ApiRepository.getInstance("")
+              .getVehicleScheduleIDAndTripIDofStudentCorrespondingToGivenTypeOfJourney(
+                  userId: userId, typeOfJourneyId: typeOfJourneyId);
+          if(res.responseStatus == true){
+            emit(LoadedState(res));
+          }else{
+            emit(ApiFailState(res.responseMessage!));
+          }
+
         } on DioError catch (e) {
-          String errorData =
-          CheckNetworkError.getInstance().getNetworkError(e);
+          String errorData = CheckNetworkError.getInstance().getNetworkError(e);
           emit(ApiFailState(errorData));
         }
       } else {

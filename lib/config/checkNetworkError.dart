@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:track_genie_phase_2/config/strings.dart';
 
 class CheckNetworkError {
   static final _sharedInstance = CheckNetworkError._internal();
@@ -17,6 +18,8 @@ class CheckNetworkError {
     print("CheckNetworkError${error}");
     print("CheckNetworkError${error.message}");
     print("CheckNetworkError${error.response?.statusCode}");
+    print("CheckNetworkError${error.error}");
+
 
     ///1 - Connection failed error
     ///Please check your network connection
@@ -33,15 +36,20 @@ class CheckNetworkError {
     } else if (error.message.toString().contains("DioError")) {
       DioErrorType dioErrorType = error.error as DioErrorType;
       return dioErrorType.name;
+    } else if(error.type == DioErrorType.connectTimeout){
+      return AppStrings.timeOutMsg;
     } else {
       if (error.response?.statusCode == 400) {
         return "Request error";
       } else if (error.response?.statusCode == 500) {
         return "Internal server error";
       } else if (error.response?.statusCode == 404) {
-        return "Page not found";
+        return "404";
       }
     }
-    return error.message;
+    return
+      error
+          .
+      message;
   }
 }

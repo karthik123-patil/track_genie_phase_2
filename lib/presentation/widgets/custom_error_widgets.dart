@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../config/constant.dart';
+import 'package:track_genie_phase_2/config/strings.dart';
 import 'custom_text_style.dart';
 
 class CustomError {
@@ -12,18 +11,18 @@ class CustomError {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CustomTextStyle.bold(text: Constant.noInternetMsg),
+          CustomTextStyle.bold(text: AppStrings.noInternetMsg),
           const SizedBox(
             height: 16,
           ),
-          CustomTextStyle.regular(text: Constant.noInternetDesc),
+          CustomTextStyle.regular(text: AppStrings.noInternetMsg),
           const SizedBox(
             height: 16,
           ),
           ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-            child: const Text(Constant.txtretry),
+            child: const Text(AppStrings.strRealTime),
           )
         ],
       )),

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_text_decoration.dart';
 
 import '../../config/colorConstant.dart';
-import '../../config/constant.dart';
 import 'custom_text_style.dart';
 
 class CustomEditField {
@@ -11,7 +11,7 @@ class CustomEditField {
     return DropdownButtonFormField(
       value: "Train",
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      hint: CustomTextStyle.regular(text: Constant.type),
+      hint: CustomTextStyle.regular(text: AppStrings.type),
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         contentPadding: EdgeInsets.symmetric(
@@ -19,7 +19,7 @@ class CustomEditField {
           horizontal: 10.0,
         ),
       ),
-      items: Constant.claimTransportModeList.map((selected) {
+      items: AppStrings.journeyList.map((selected) {
         return DropdownMenuItem<String>(
           value: selected,
           child: CustomTextStyle.regular(text: selected),
@@ -43,10 +43,10 @@ class CustomEditField {
       textInputAction: TextInputAction.done,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: CustomTextDecoration.textFieldDecoration(
-          labelText: Constant.txtRemarks),
+          labelText: AppStrings.remark),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return Constant.enterTextError;
+          return AppStrings.enterTextError;
         }
         return null;
       },

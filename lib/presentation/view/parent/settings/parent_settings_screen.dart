@@ -2,21 +2,25 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
+import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
 import 'package:track_genie_phase_2/presentation/widgets/parent_appbar.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
+
 class ParentSettingScreen extends StatelessWidget {
+  const ParentSettingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
-      onWillPop: (){
-
+      onWillPop: () {
         Navigator.pop(context);
         exit(1);
       },
       child: Scaffold(
-        appBar: const ParentAppBar(index: 3,),
+        appBar: const ParentAppBar(
+          index: 3,
+        ),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -24,74 +28,83 @@ class ParentSettingScreen extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).pushNamed(routeStudentInfo);
                 },
                 title: Text(
-                  "Student Information",
+                  AppStrings.settStudentInfo,
                   style: AppTextStyles.studentNameTextStyle,
                 ),
                 subtitle: Text(
-                  "Your childs information as per school records",
+                  AppStrings.settStudentDetails,
                   style: AppTextStyles.dynamicValuesStyle,
                 ),
-                trailing: Image.asset('assets/images/small_forward_img.png', scale: 1.5,),
+                trailing: Image.asset(
+                  AppStrings.forwardImage,
+                  scale: 1.5,
+                ),
               ),
               const Divider(
                 thickness: 1.5,
                 color: AppColors.dividerColor,
               ),
-              /*ListTile(
-                onTap: (){
-                  Navigator.of(context).pushNamed("/NotificationSettingsScreen");
-                },
-                title: Text(
-                  "Notification Settings",
-                  style: AppTextStyles.studentNameTextStyle,
-                ),
-                subtitle: Text(
-                  "Choose your notification preferences",
-                  style: AppTextStyles.dynamicValuesStyle,
-                ),
-                trailing: Image.asset('assets/images/small_forward_img.png', scale: 1.5,),
-              ),
-              const Divider(
-                thickness: 1.5,
-                color: AppColors.dividerColor,
-              ),*/
-
               ListTile(
-                onTap: (){
-
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(routeNotificationSetting);
                 },
                 title: Text(
-                  "Schedule Leave",
+                  AppStrings.settNotification,
                   style: AppTextStyles.studentNameTextStyle,
                 ),
                 subtitle: Text(
-                  "Schedule your leave preferences",
+                  AppStrings.settNotificationDetails,
                   style: AppTextStyles.dynamicValuesStyle,
                 ),
-                trailing: Image.asset('assets/images/small_forward_img.png', scale: 1.5,),
+                trailing: Image.asset(
+                  AppStrings.forwardImage,
+                  scale: 1.5,
+                ),
               ),
               const Divider(
                 thickness: 1.5,
                 color: AppColors.dividerColor,
               ),
-
               ListTile(
-                onTap: (){
-
-                },
+                onTap: () {},
                 title: Text(
-                  "Cancel Scheduled Leave",
+                  AppStrings.settScheduleLeave,
                   style: AppTextStyles.studentNameTextStyle,
                 ),
                 subtitle: Text(
-                  "Cancel Scheduled your leave preferences",
+                  AppStrings.settScheduleLeaveDetails,
                   style: AppTextStyles.dynamicValuesStyle,
                 ),
-                trailing: Image.asset('assets/images/small_forward_img.png', scale: 1.5,),
+                trailing: Image.asset(
+                  AppStrings.forwardImage,
+                  scale: 1.5,
+                ),
+              ),
+              const Divider(
+                thickness: 1.5,
+                color: AppColors.dividerColor,
+              ),
+              ListTile(
+                onTap: () {
+
+                },
+                title: Text(
+                  AppStrings.settCancelLeave,
+                  style: AppTextStyles.studentNameTextStyle,
+                ),
+                subtitle: Text(
+                  AppStrings.settCancelLeaveDetails,
+                  style: AppTextStyles.dynamicValuesStyle,
+                ),
+                trailing: Image.asset(
+                  AppStrings.forwardImage,
+                  scale: 1.5,
+                ),
               ),
               const Divider(
                 thickness: 1.5,
@@ -103,6 +116,4 @@ class ParentSettingScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

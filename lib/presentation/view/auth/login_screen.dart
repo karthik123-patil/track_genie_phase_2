@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                           child: TextFormField(
                             controller: employeeIdController,
                             keyboardType: TextInputType.text,
-                            // autofocus: isFocus,
+                            autofocus: LoginBloc.isFocus,
                             style: AppTextStyles.createAcctStyle,
                             decoration: InputDecoration(
                               hintText: AppStrings.hintUniqueId,
@@ -159,6 +159,8 @@ class LoginScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: state is ValidState
                                     ? () {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
                                         BlocProvider.of<LoginBloc>(context).add(
                                             SubmittedEvent(
                                                 employeeIdController.text
@@ -196,15 +198,30 @@ class LoginScreen extends StatelessWidget {
                     listener: (context, state) {
                       if (state is ApiSuccessState) {
                         Helper.getToastMsg(state.mapData[AppStrings.keyMapMsg]);
-                        if(state.mapData[AppStrings.keyMapRegister] == AppStrings.isAdmin) {
+                        if (state.mapData[AppStrings.keyMapRegister] ==
+                            AppStrings.isAdmin) {
                           Navigator.of(context).pushNamed(routeAdminBottom);
-                        }else if(state.mapData[AppStrings.keyMapRegister] == AppStrings.isDriver){
-                          Navigator.of(context).pushNamed(routeVehicleScheduled);
-                        }else if(state.mapData[AppStrings.keyMapRegister] == AppStrings.isStudent){
+                        } else if (state.mapData[AppStrings.keyMapRegister] ==
+                            AppStrings.isDriver) {
+                          Navigator.of(context)
+                              .pushNamed(routeVehicleScheduled);
+                        } else if (state.mapData[AppStrings.keyMapRegister] ==
+                            AppStrings.isStudent) {
                           Navigator.of(context).pushNamed(routeTypeOfJourney);
-                        }else{
-                          Navigator.of(context).pushNamed(routeVehicleScheduled);
+                        } else {
+                          Navigator.of(context)
+                              .pushNamed(routeVehicleScheduled);
                         }
+                      } else if (state is TimeOutExceptionState) {
+                        BlocProvider.of<LoginBloc>(context).add(TextChangeEvent(
+                            employeeIdController.text,
+                            mobileNoController.text));
+                        AppUtils().showLoginTimeOutDialog(context, () {
+                          Navigator.of(context, rootNavigator: true).pop();
+                          // BlocProvider.of<LoginBloc>(context).add(SubmittedEvent(
+                          //     employeeIdController.text,
+                          //     mobileNoController.text));
+                        });
                       } else if (state is ApiFailState) {
                         BlocProvider.of<LoginBloc>(context).add(TextChangeEvent(
                             employeeIdController.text,

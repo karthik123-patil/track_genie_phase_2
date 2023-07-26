@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:track_genie_phase_2/config/Helper.dart';
-import 'package:track_genie_phase_2/config/constant.dart';
 import 'package:track_genie_phase_2/config/shared_preferences.dart';
+import 'package:track_genie_phase_2/presentation/view/parent/bottom/parent_bottom.dart';
 import '../../config/colorConstant.dart';
 import 'custom_text_style.dart';
 
@@ -66,5 +65,12 @@ class CustomPopups {
         ],
       ),
     )) ?? false;
+  }
+
+  Future<bool> onWillPop(BuildContext context) async {
+
+    Navigator.pop(context);
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ParentBottomScreen(intCurIndex: 3)));
+    return true;
   }
 }

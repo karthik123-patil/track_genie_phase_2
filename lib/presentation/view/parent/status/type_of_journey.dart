@@ -129,9 +129,7 @@ class TypeOFJourneyScreen extends StatelessWidget{
                               width: 150,
                               child: ElevatedButton(
                                 onPressed: state is OnSelectionState ? () {
-
-                                  Navigator.of(context).pushNamed(routeParentBottom);
-                                  // context.read<TypeOFJourneyCubit>().startTheTrip();
+                                  context.read<TypeOFJourneyCubit>().startTheTrip();
                                 }:null,
                                 style: ElevatedButton.styleFrom(
                                     padding: const EdgeInsets.symmetric(vertical: 13),
@@ -161,7 +159,12 @@ class TypeOFJourneyScreen extends StatelessWidget{
                 ),
               );
             },
-            listener: (BuildContext context,  state) {  },
+            listener: (BuildContext context,  state) {
+              if(state is LoadedState){
+                Navigator.of(context).pushNamed(routeParentBottom);
+              }
+
+            },
 
           ),
         ),

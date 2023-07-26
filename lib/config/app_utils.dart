@@ -39,7 +39,7 @@ class AppUtils {
 
 
 
-  void showLoginTimeOutDialog(BuildContext context) {
+  void showLoginTimeOutDialog(BuildContext context, VoidCallback onTap) {
     showGeneralDialog(
       context: context,
       barrierLabel: "Barrier",
@@ -85,11 +85,7 @@ class AppUtils {
                       ),
                       Material(
                         child: InkWell(
-                          onTap: () async{
-                            Navigator.of(context, rootNavigator: true).pop();
-                            Navigator.of(context).pushNamed('/LoginScreen');
-                            //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginScreen()));
-                          },
+                          onTap: onTap,
                           child: const Padding(
                             padding: EdgeInsets.only(left: 12.0, right: 12.0, top: 12.0, bottom: 2),
                             child: DefaultTextStyle(

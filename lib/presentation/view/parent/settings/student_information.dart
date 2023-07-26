@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/student_info_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/state/CommonState.dart';
 import 'package:track_genie_phase_2/presentation/widgets/student_information_appbar.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
@@ -23,7 +24,7 @@ class StudentInformationScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: AppColors.whiteColor,
-          child: BlocConsumer(
+          child: BlocConsumer<StudentInfoCubit,CommonState>(
             builder: (BuildContext context, state) {
               if(state is LoadingState){
                 return Column(
@@ -109,7 +110,7 @@ class StudentInformationScreen extends StatelessWidget {
                   ],
                 );
               }else if(state is LoadingState){
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               return Container();
 

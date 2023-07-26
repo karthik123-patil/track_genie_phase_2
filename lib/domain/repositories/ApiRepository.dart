@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
+import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
+import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
 
 import '../../data/datasources/network/RequestResponseInspector.dart';
@@ -40,6 +42,7 @@ class ApiRepository {
       required String mobileNo}) async {
     return await ApiRepository.client
         .authenticateUser(request, roleId, uniqueId, mobileNo);
+
   }
 
   Future<dynamic> getSchedulesVehicleListDriver(
@@ -52,7 +55,7 @@ class ApiRepository {
     return await ApiRepository.client.getSchedulesVehicleListAttendant(roleId);
   }
 
-  Future<dynamic>
+  Future<GetScheduleAndTripById>
       getVehicleScheduleIDAndTripIDofStudentCorrespondingToGivenTypeOfJourney(
           {required String userId, required String typeOfJourneyId}) async {
     return await ApiRepository.client
@@ -62,5 +65,15 @@ class ApiRepository {
 
   Future<GetSchoolContacts> getSchoolContact() async {
     return await ApiRepository.client.getSchoolContact();
+  }
+
+  Future<GetSchoolContacts> postNotificationSetting(
+      {required String operation, required String userId, required String val}) async {
+    return await ApiRepository.client.postNotificationSetting(operation, userId, val);
+  }
+
+  Future<BusInfoModel> getBusInfo(
+      { required String userId, required String scheduleId}) async {
+    return await ApiRepository.client.getBusInfo( userId, scheduleId);
   }
 }

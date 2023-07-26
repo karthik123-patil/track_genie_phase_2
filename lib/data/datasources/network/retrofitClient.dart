@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
+import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
+import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
 
 part 'retrofitClient.g.dart';
@@ -27,9 +29,9 @@ abstract class RestClient {
     @Path("userId") String roleId,
   );
 
-  @POST(
+  @GET(
       "getVehicleScheduleIDAndTripIDofStudentCorrespondingToGivenTypeOfJourney/{userId}/{typeOfJourneyId}")
-  Future<dynamic>
+  Future<GetScheduleAndTripById>
       getVehicleScheduleIDAndTripIDofStudentCorrespondingToGivenTypeOfJourney(
           @Path("userId") String userId,
           @Path("typeOfJourneyId") String typeOfJourneyId);
@@ -45,5 +47,18 @@ abstract class RestClient {
   @POST("getLastStopLatLongOfVehicleSchedule/{scheduleId}")
   Future<dynamic> getLastStopLatLongOfVehicleSchedule(
     @Path("scheduleId") String roleId,
+  );
+
+  @PUT("{operation}/{userId}/{val}")
+  Future<dynamic> postNotificationSetting(
+    @Path("operation") String operation,
+    @Path("userId") String userId,
+    @Path("val") String val,
+  );
+
+  @GET("getBusInfo/{userId}/{scheduleId}")
+  Future<BusInfoModel> getBusInfo(
+    @Path("userId") String userId,
+    @Path("scheduleId") String scheduleId,
   );
 }

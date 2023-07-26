@@ -147,8 +147,8 @@ class RegisterAsScreen extends StatelessWidget{
                               height: 50,
                               child: ElevatedButton(
                                 onPressed: state is OnSelectionState ? () {
-                                  // Navigator.of(context).pushNamed(routeLogin);
-                                  Navigator.of(context).pushNamed(routeParentBottom);
+                                  Navigator.of(context).pushNamed(routeLogin);
+                                  // Navigator.of(context).pushNamed(routeParentBottom);
 
                                 }:null,
                                 style: ElevatedButton.styleFrom(

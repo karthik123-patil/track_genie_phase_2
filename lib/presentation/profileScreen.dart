@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
+import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/domain/model/ProfileModel.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_edit_widgets.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_text_style.dart';
-import '../config/constant.dart';
 import 'bloc_logic/bloc/profile_cubit.dart';
 import 'bloc_logic/state/CommonState.dart';
 
@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                         child: const Image(
-                          image: AssetImage(Constant.icAppIconProfilePic),
+                          image: AssetImage("Constant.icAppIconProfilePic"),
                         ),
                       ),
                     ),
@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CustomEditField.getEditField(
                       controller: username,
                       iconData: Icons.account_box,
-                      hintName: Constant.hintName,
+                      hintName: AppStrings.strAddress,
                       isEnable: false),
                   const SizedBox(
                     height: 16,
@@ -81,14 +81,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CustomEditField.getEditField(
                       controller: mobileNumber,
                       iconData: Icons.phone,
-                      hintName: Constant.hintMobile,
+                      hintName:" Constant.hintMobile",
                       isEnable: false),
                   const SizedBox(
                     height: 16,
                   ),
                   CustomEditField.getEditFieldMaxLength(
                       controller: emailId,
-                      hintName: Constant.hintEmail,
+                      hintName: "Constant.hintEmail",
                       isEnable: false,
                       length: 2,
                       suffix: Icons.cancel,
@@ -101,8 +101,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: CustomTextStyle.bold(
                         color: AppColors.green800,
                         text: data.isEmailVerified == "1"
-                            ? Constant.emailVerified
-                            : Constant.emailNotVerified),
+                            ? "Constant.emailVerified"
+                            : "Constant.emailNotVerified"),
                   ),
                   const SizedBox(
                     height: 16,
@@ -110,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CustomEditField.getEditField(
                       controller: userId,
                       iconData: Icons.account_box,
-                      hintName: Constant.hintUserId,
+                      hintName: "Constant.hintUserId",
                       isEnable: false),
                   const SizedBox(
                     height: 16,
@@ -118,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CustomEditField.getEditField(
                       controller: userType,
                       iconData: Icons.group,
-                      hintName: Constant.hintUserType,
+                      hintName: "Constant.hintUserType",
                       isEnable: false),
                 ],
               ),
