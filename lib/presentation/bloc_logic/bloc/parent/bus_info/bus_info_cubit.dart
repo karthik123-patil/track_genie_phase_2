@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/checkNetworkError.dart';
@@ -28,6 +30,12 @@ class BusInfoCubit extends Cubit<CommonState> {
             userId: userId,
             scheduleId: scheduleId,
           );
+
+          // TripStatusModel tripStatusModel = await ApiRepository.getInstance("")
+          //     .getTripDetails(tripScheduleId: '193');
+          //
+          // print(jsonEncode(tripStatusModel));
+
           if (res.responseStatus == true) {
             emit(LoadedState(res));
           } else {

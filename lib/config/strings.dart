@@ -95,6 +95,7 @@ class AppStrings {
   static const String strSecondaryGuardian = "Secondary Guardian";
   static const String strAddress = "Address";
 
+
   //parent setting
   static const String settStudentInfo = "Student Information";
   static const String settStudentDetails = "Your child's information as per school records";
@@ -167,6 +168,7 @@ class AppStrings {
   static const strConfirmation = "Confirmation";
   static const strRescan = "Re-scan";
 
+
   //status screen text
   static const strChildNotBoarded = "Child not boarded";
   static const strContactNumber = "Contact Number";
@@ -225,4 +227,9 @@ class AppStrings {
     "Onward Journey",
     "Backward Journey"
   ];
+  static const strLineCalled = "LINE";
+
+  double cameraTilt = 0;
+  double cameraBearing = 30;
+  double cameraZoom = 12;
 }

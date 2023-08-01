@@ -8,3 +8,5 @@ const String routeTypeOfJourney = "/TypeOFJourneyScreen";
 const String routeParentBottom= "/ParentBottomScreen";
 const String routeStudentInfo = "/StudentInformation";
 const String routeNotificationSetting = "/NotificationSettingsScreen";
+const String routeTest = "/test";
+const String routeDriverTrip = "/DriverTripScreen";

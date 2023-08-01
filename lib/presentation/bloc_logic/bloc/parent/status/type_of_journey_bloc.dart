@@ -38,6 +38,9 @@ class TypeOFJourneyCubit extends Cubit<CommonState> {
                   userId: userId, typeOfJourneyId: typeOfJourneyId);
           if(res.responseStatus == true){
             emit(LoadedState(res));
+            StorageUtil.instance.setStringValue(AppStrings.strPrefTripScheduleId, res.data!.tripID.toString());
+            StorageUtil.instance.setStringValue(AppStrings.strPrefVehicleScheduleId, res.data!.vehicleScheduleID.toString());
+            StorageUtil.instance.setStringValue(AppStrings.strLineCalled, "LINE_NOT_CALLED");
           }else{
             emit(ApiFailState(res.responseMessage!));
           }

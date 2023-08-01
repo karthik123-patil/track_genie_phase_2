@@ -42,19 +42,22 @@ dependencies:
   flutter_native_splash: ^2.2.16
   material_color_gen: ^2.0.0
   package_info_plus: ^4.0.0
-#  platform_device_id: ^1.0.1
   fluttertoast: ^8.0.9
-#  intl: ^0.18.1
   url_launcher: ^6.1.11
   localize_and_translate: ^4.1.1
   dio: ^4.0.6
   retrofit: ^3.3.1
   dio_http2_adapter: ^2.0.0
   toggle_switch: ^2.1.0
-#  firebase_core_platform_interface: ^4.5.1
-#  firebase_core: ^2.6.0
-#  firebase_messaging: ^14.2.3
-#  flutter_local_notifications: ^5.0.0+4
+  firebase_core: ^2.15.0
+  flutter_local_notifications: ^15.1.0+1
+  firebase_messaging: ^14.6.5
+  flutter_polyline_points: ^1.0.0
+  google_maps_flutter: ^2.4.0
+  sliding_up_panel: ^2.0.0+1
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+  another_stepper: ^1.2.2
 
 dev_dependencies:
   flutter_test:

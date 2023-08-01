@@ -4,6 +4,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
 import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
+import 'package:track_genie_phase_2/domain/model/response/TripStatusModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
 import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
@@ -16,7 +17,7 @@ class ApiRepository {
 
   ApiRepository._internal();
 
-  static Dio dio = Dio(BaseOptions(connectTimeout: 5 * 1000));
+  static Dio dio = Dio(BaseOptions(connectTimeout: 30 * 1000));
 
   static late RestClient client;
 
@@ -75,5 +76,13 @@ class ApiRepository {
   Future<BusInfoModel> getBusInfo(
       { required String userId, required String scheduleId}) async {
     return await ApiRepository.client.getBusInfo( userId, scheduleId);
+  }
+  Future<TripStatusModel> getTripDetails(
+      {required String tripScheduleId}) async {
+    return await ApiRepository.client.getTripDetails(tripScheduleId);
+  }
+  Future<TripStatusModel> trackVehicleByStops(
+      {required String tripScheduleId}) async {
+    return await ApiRepository.client.getTripDetails(tripScheduleId);
   }
 }

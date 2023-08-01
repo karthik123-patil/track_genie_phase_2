@@ -47,8 +47,7 @@ class AppColors {
   static const Color notificationColor = Color(0xFF888888);
   static const Color daysColor = Color(0xFF847D7D);
   static const Color darkBlue = Color(0xFF0C5EDA);
-
-
+  static const Color pinkColor = Color(0xFFFFA500);
   static const kBackgroundColor = Color(0xFFD2FFF4);
   static const kPrimaryColor = Color(0xFF2D5D70);
   static const kSecondaryColor = Color(0xFF265DAB);

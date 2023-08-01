@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 
 
@@ -359,6 +360,8 @@ class AppUtils {
   // static const LatLng sourceLocation = LatLng(12.926485, 77.6007517);
   // static const LatLng destLocation = LatLng(12.913590, 77.615090);
 
+  static const LatLng sourceLocation = LatLng(12.926485, 77.6007517);
+  static const LatLng destLocation = LatLng(12.913590, 77.615090);
 
   void timeOutSnackBar(BuildContext context) async {
     const snackBar = SnackBar(

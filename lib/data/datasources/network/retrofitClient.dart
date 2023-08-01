@@ -6,6 +6,8 @@ import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dar
 import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
 
+import '../../../domain/model/response/TripStatusModel.dart';
+
 part 'retrofitClient.g.dart';
 
 @RestApi(baseUrl: "http://192.168.4.60:8200/trackgenie/")
@@ -61,4 +63,43 @@ abstract class RestClient {
     @Path("userId") String userId,
     @Path("scheduleId") String scheduleId,
   );
+
+
+  ///this all api use for drive trip module
+  // at the time of ui load  -
+  // driverHomescreen
+  // getLastStopLatLongOfVehicleSchedule
+  // getLatLongOrderOfAllStopsOfVehicleSchedule
+
+  @GET("driverHomescreen/{tripScheduleId}")
+  Future<TripStatusModel> getTripDetails(
+      @Path("tripScheduleId") String tripScheduleId);
+
+  @GET("getLastStopLatLongOfVehicleSchedule/{scheduleId}")
+  Future<dynamic> getLastStopLatLong(@Path("scheduleId") String scheduleId);
+
+  @GET("getLatLongOrderOfAllStopsOfVehicleSchedule/{scheduleId}")
+  Future<dynamic> getLatLongOrderOfAllStopsOfVehicleSchedule(@Path("scheduleId") String scheduleId);
+
+
+
+
+  @GET("busReachedDestination/{tripId}")
+  Future<dynamic> busReachedDestination(@Path("tripId") String tripId);
+
+
+
+  @GET("getStudentDetailsHavingUniqueKey/{uniqueId}/{strOptions}/{strTripId}")
+  Future<dynamic> verifyStudentByUnique(@Path("uniqueId") String scheduleId,
+      @Path("strOptions") String strOptions,
+      @Path("strTripId") String strTripId
+      );
+
+  @GET("getStudentDetailsHavingQRcodeString/{qrCode}/{strOptions}/{strTripId}")
+  Future<dynamic> verifyStudentByQRCOde(@Path("qrCode") String scheduleId,
+      @Path("strOptions") String strOptions,
+      @Path("strTripId") String strTripId
+      );
+
+
 }
