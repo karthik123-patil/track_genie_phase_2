@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/auth/loginBloc.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/driver/vehicle_schedule_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/bus_info/bus_info_cubit.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/contacts/parent_contact_bloc.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/get_leaves_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/notification_setting_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/student_info_bloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/status/type_of_journey_bloc.dart';
@@ -11,10 +13,15 @@ import 'package:track_genie_phase_2/presentation/view/auth/register_as_screen.da
 import 'package:track_genie_phase_2/presentation/view/common/first_slide.dart';
 import 'package:track_genie_phase_2/presentation/view/common/splashScreen.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/bottom/parent_bottom.dart';
+import 'package:track_genie_phase_2/presentation/view/parent/notification/notification_screen.dart';
+import 'package:track_genie_phase_2/presentation/view/parent/settings/cancel_leave_screen.dart';
+import 'package:track_genie_phase_2/presentation/view/parent/settings/profile_screen.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/settings/student_information.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/status/type_of_journey.dart';
 import 'package:track_genie_phase_2/presentation/view/vehicle_scheduled.dart';
 
+import '../bloc_logic/bloc/driver/driver_trip_bloc.dart';
+import '../bloc_logic/bloc/parent/notification/notification_cubit.dart';
 import '../view/auth/login_screen.dart';
 import '../view/check_notification_test.dart';
 import '../view/driver/driver_trip.dart';
@@ -44,7 +51,7 @@ class Routes {
       case routeVehicleScheduled:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-              create: (context) => LoginBloc(),
+              create: (context) => VehicleScheduleBloc(),
               child: const VehicleScheduledScreen()),
         );
       case routeTypeOfJourney:
@@ -71,7 +78,7 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
               create: (context) => StudentInfoCubit(),
-              child: const StudentInformationScreen()),
+              child:   StudentInformationScreen()),
         );
       case routeTest:
         return MaterialPageRoute(
@@ -79,7 +86,7 @@ class Routes {
         );
       case routeDriverTrip:
         return MaterialPageRoute(
-          builder: (_) => DriverTripScreen(),
+          builder: (_) => BlocProvider(create: (context) => DriverTripCubit(), child: DriverTripScreen()),
         );
 
       case routeNotificationSetting:
@@ -87,6 +94,27 @@ class Routes {
           builder: (_) => BlocProvider(
               create: (context) => NotificationSettingCubit(),
               child: const NotificationSettingsScreen()),
+        );
+
+      case routeStudentProfile:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+              create: (context) => NotificationSettingCubit(),
+              child: StudentProfileScreen()),
+        );
+
+      case routeCancelLeave:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+              create: (context) => GetLeavesCubit(),
+              child:  CancelLeaveScreen()),
+        );
+
+      case routeStudentNotification:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+              create: (context) => StudentNotificationCubit(),
+              child:  const StudentNotificationScreen()),
         );
     }
     return null;

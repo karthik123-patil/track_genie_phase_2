@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/Helper.dart';
 import 'package:track_genie_phase_2/config/app_utils.dart';
+import 'package:track_genie_phase_2/config/shared_preferences.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/auth/loginBloc.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/auth/login_event.dart';
@@ -158,14 +159,15 @@ class LoginScreen extends StatelessWidget {
                               width: state is! LoadingState ? 100 : 150,
                               child: ElevatedButton(
                                 onPressed: state is ValidState
-                                    ? () {
+                                    ? ()  async{
+                                        final roleId  = await StorageUtil.instance.getStringValue(AppStrings.strPrefRoleId);
                                         FocusManager.instance.primaryFocus
                                             ?.unfocus();
                                         BlocProvider.of<LoginBloc>(context).add(
                                             SubmittedEvent(
                                                 employeeIdController.text
                                                     .trim(),
-                                                mobileNoController.text));
+                                                mobileNoController.text, roleId));
                                       }
                                     : null,
                                 style: ElevatedButton.styleFrom(
@@ -199,9 +201,6 @@ class LoginScreen extends StatelessWidget {
                       if (state is ApiSuccessState) {
                         Helper.getToastMsg(state.mapData[AppStrings.keyMapMsg]);
                         if (state.mapData[AppStrings.keyMapRegister] ==
-                            AppStrings.isAdmin) {
-                          Navigator.of(context).pushNamed(routeAdminBottom);
-                        } else if (state.mapData[AppStrings.keyMapRegister] ==
                             AppStrings.isDriver) {
                           Navigator.of(context)
                               .pushNamed(routeVehicleScheduled);

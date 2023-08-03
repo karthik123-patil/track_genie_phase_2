@@ -58,8 +58,14 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.1.0
   another_stepper: ^1.2.2
+<<<<<<< Updated upstream
   google_maps_flutter_platform_interface: ^2.4.0
   cached_network_image: ^3.2.3
+=======
+  cached_network_image: ^3.2.3
+  image_picker: ^0.8.5+3
+  table_calendar: ^3.0.2
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:

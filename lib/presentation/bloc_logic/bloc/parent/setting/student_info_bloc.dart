@@ -21,13 +21,15 @@ class StudentInfoCubit extends Cubit<CommonState> {
         await StorageUtil.instance.getStringValue(AppStrings.strPrefAddress);
     String strPhoto =
         await StorageUtil.instance.getStringValue(AppStrings.strPrefPhoto);
+    String strEmail =
+        await StorageUtil.instance.getStringValue(AppStrings.strPrefEmail);
 
     StudentInfo profileModel = StudentInfo(
         strName: strName,
         strContactNo: strContactNo,
         strUniqueId: strUniqueId,
         strAddress: strAddress,
-        strPhoto: strPhoto);
+        strPhoto: strPhoto, strEmail: strEmail);
 
     emit(LoadedState(profileModel));
   }

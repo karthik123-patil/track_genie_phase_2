@@ -91,7 +91,7 @@ class RegisterAsScreen extends StatelessWidget{
                             ///Driver card click
                             InkWell(
                               onTap: () {
-                                context.read<RegisterAsCubit>().onCardSelection("2");
+                                context.read<RegisterAsCubit>().onCardSelection("4");
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.45,
@@ -105,7 +105,7 @@ class RegisterAsScreen extends StatelessWidget{
                                       fit: BoxFit.cover),
                                   borderRadius:
                                   const BorderRadius.all(Radius.circular(10)),
-                                  border: Border.all(color: state is OnSelectionState && state.roleId == "2" ?
+                                  border: Border.all(color: state is OnSelectionState && state.roleId == "4" ?
                                   AppColors.redColor:AppColors.whiteColor,
                                       width: 1.6),
                                 ),
@@ -147,8 +147,8 @@ class RegisterAsScreen extends StatelessWidget{
                               height: 50,
                               child: ElevatedButton(
                                 onPressed: state is OnSelectionState ? () {
-                                  // Navigator.of(context).pushNamed(routeLogin);
-                                  Navigator.of(context).pushNamed(routeDriverTrip);
+                                  Navigator.of(context).pushNamed(routeLogin);
+                                 // Navigator.of(context).pushNamed(routeDriverTrip);
                                   // Navigator.of(context).pushNamed(routeTest);
                                   // Navigator.of(context).pushNamed(routeParentBottom);
 

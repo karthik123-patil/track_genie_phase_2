@@ -9,6 +9,7 @@ class TextChangeEvent extends LoginEvent {
 class SubmittedEvent extends LoginEvent {
   final String userID;
   final String mobileNumber;
+  final String roleId;
 
-  SubmittedEvent(this.userID, this.mobileNumber);
+  SubmittedEvent(this.userID, this.mobileNumber, this.roleId);
 }

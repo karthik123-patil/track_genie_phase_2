@@ -70,7 +70,6 @@ class CustomPopups {
   Future<bool> onWillPop(BuildContext context) async {
 
     Navigator.pop(context);
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ParentBottomScreen(intCurIndex: 3)));
     return true;
   }
 }

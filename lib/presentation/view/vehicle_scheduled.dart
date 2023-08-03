@@ -1,19 +1,26 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_genie_phase_2/config/app_utils.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
+import 'package:track_genie_phase_2/domain/model/response/driver/get_schedule_list.dart';
+import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/driver/vehicle_schedule_bloc.dart';
 import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
-import 'package:track_genie_phase_2/presentation/widgets/input-border.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
+import '../../config/Helper.dart';
+import '../../config/shared_preferences.dart';
+import '../bloc_logic/bloc/driver/schedule_event.dart';
+import '../bloc_logic/state/CommonState.dart';
 
 class VehicleScheduledScreen extends StatelessWidget {
   const VehicleScheduledScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String? selectedValue;
+    String strScheduleId = '';
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: AppUtils.whiteSystemTheme,
       child: WillPopScope(
@@ -87,115 +94,137 @@ class VehicleScheduledScreen extends StatelessWidget {
                         const EdgeInsets.only(left: 18.0, right: 18.0, top: 30),
                     child: Row(
                       children: [
-                        // true ? Expanded(
-                        //   child: DropdownButtonFormField(
-                        //     isExpanded: true,
-                        //     decoration: InputDecoration(
-                        //       label: Text("Schedule", style: AppTextStyles.studentNameTextStyle,),
-                        //       enabledBorder: OutlineInputBorder(
-                        //         borderSide: const BorderSide(color: Colors.black, width: 2),
-                        //         borderRadius: BorderRadius.circular(20),
-                        //       ),
-                        //       border: OutlineInputBorder(
-                        //         borderSide: const BorderSide(color: Colors.black, width: 2),
-                        //         borderRadius: BorderRadius.circular(20),
-                        //       ),
-                        //       filled: true,
-                        //       fillColor: Colors.white,
-                        //     ),
-                        //     dropdownColor: Colors.white, items: [],
-                        //     onChanged: (Object? value) {  },
-                        //     // value: selectedValue,
-                        //     // items: scheduleList.map((item) {
-                        //     //   return DropdownMenuItem(
-                        //     //     value: item['scheduleName']
-                        //     //         .toString(),
-                        //     //     child: Text(
-                        //     //       item['scheduleName']
-                        //     //           .toString(),
-                        //     //       style: const TextStyle(
-                        //     //           color: Colors.black),
-                        //     //     ),
-                        //     //   );
-                        //     // }).toList(),
-                        //     // hint:const Text(
-                        //     //   "Select Schedule",
-                        //     //   style: TextStyle(
-                        //     //       color: Colors.black,
-                        //     //       fontSize: 14,
-                        //     //       fontWeight: FontWeight.w500),
-                        //     // ),
-                        //     // onChanged: (String? value) {
-                        //     //   setState(() {
-                        //     //     for (var element in scheduleList) {
-                        //     //       if (element['scheduleName']
-                        //     //           .toString() ==
-                        //     //           value) {
-                        //     //         strScheduleId = element['scheduleId']
-                        //     //             .toString();
-                        //     //       }
-                        //     //     }
-                        //     //     StorageUtil.instance.setStringValue(AppStrings.strPrefVehicleScheduleId, strScheduleId.toString());
-                        //     //   });
-                        //     // },
-                        //   ),
-                        // ):
-                        Expanded(
-                          child: TextFormField(
-                            readOnly: true,
-                            style: AppTextStyles.createAcctStyle,
-                            decoration: InputDecoration(
-                                hintText: "Schedule is not assigned",
-                                hintStyle: AppTextStyles.hintTextStyle,
-                                errorBorder: InPutBorders.errorBorders,
-                                focusedBorder: InPutBorders.focusBorders,
-                                enabledBorder: InPutBorders.enableBorders,
-                                suffixIcon: const Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Colors.grey,
-                                )),
-                          ),
-                        )
+                        BlocConsumer<VehicleScheduleBloc,CommonState>(
+                            listener: (BuildContext context, Object? state) {
+                            },
+                            builder:  (context, state) {
+                              if (state is LoadedState){
+                                ScheduledVehicleList responseData = state.data as ScheduledVehicleList;
+                                return Expanded(
+                                  child: DropdownButtonFormField(
+                                    isExpanded: true,
+                                    decoration: InputDecoration(
+                                      label: Text("Schedule", style: AppTextStyles.studentNameTextStyle,),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.black, width: 2),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.black, width: 2),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                    ),
+                                    dropdownColor: Colors.white,
+                                    onChanged: (value) {
+                                      strScheduleId = value.toString();
+                                      StorageUtil.instance.setStringValue(AppStrings.strPrefVehicleScheduleId, value.toString());
+                                    },
+                                    value: selectedValue,
+                                    items: responseData.data!.map((item) {
+                                      return DropdownMenuItem(
+                                        value: item.vehicleScheduleID
+                                            .toString(),
+                                        child: Text(
+                                          item.routeVehicleScheduleName
+                                              .toString(),
+                                          style: const TextStyle(
+                                              color: Colors.black),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    hint:const Text(
+                                      "Select Schedule",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    /* onChanged: (String? value) {
+                              setState(() {
+                                for (var element in scheduleList) {
+                                  if (element['scheduleName']
+                                      .toString() ==
+                                      value) {
+                                    strScheduleId = element['scheduleId']
+                                        .toString();
+                                  }
+                                }
+                                StorageUtil.instance.setStringValue(AppStrings.strPrefVehicleScheduleId, strScheduleId.toString());
+                              });
+                            },*/
+                                  ),
+                                );
+                              }else{
+                                return Container();
+                              }
+
+                            }
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-                  Padding(
-                    padding:
+                  BlocConsumer<VehicleScheduleBloc, CommonState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding:
                         const EdgeInsets.only(left: 18.0, right: 18.0, top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // SizedBox(
-                        //   width: 150,
-                        //   child: ElevatedButton(
-                        //     onPressed: strScheduleId!.isNotEmpty ? () async{
-                        //       startTheTrip();
-                        //     } : null,
-                        //     style: ElevatedButton.styleFrom(
-                        //         padding: const EdgeInsets.symmetric(vertical: 13),
-                        //         backgroundColor: AppColors.bgColor,
-                        //         elevation: 2,
-                        //         shape: const RoundedRectangleBorder(
-                        //             borderRadius: BorderRadius.all(Radius.circular(10))
-                        //         )
-                        //     ),
-                        //     child: isCircular? const SizedBox(
-                        //       height: 30,
-                        //       width: 30,
-                        //       child: CircularProgressIndicator(
-                        //         color: AppColors.blackColor,
-                        //         strokeWidth: 1,
-                        //       ),
-                        //     ): Text(AppStrings.strStartTrip,
-                        //       style: AppTextStyles.btnTextStyle,
-                        //     ),
-                        //   ),
-                        // )
-                      ],
-                    ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 150,
+                              child: ElevatedButton(
+                                onPressed: state is LoadedState ? () async{
+                                  String userId = await StorageUtil.instance.getStringValue(AppStrings.strPrefUserId);
+                                  String strLat = await StorageUtil.instance.getStringValue(AppStrings.strCurrentLat);
+                                  String strLong = await StorageUtil.instance.getStringValue(AppStrings.strCurrentLng);
+                                  BlocProvider.of<VehicleScheduleBloc>(context).add(
+                                      TripButtonEvent(
+                                          userId,
+                                          strLat,
+                                          strLong, strScheduleId));
+                                } : null,
+                                style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 13),
+                                    backgroundColor: AppColors.bgColor,
+                                    elevation: 2,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10))
+                                    )
+                                ),
+                                child: state is LoadingState ? const SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.blackColor,
+                                    strokeWidth: 1,
+                                  ),
+                                ): Text(AppStrings.strStartTrip,
+                                  style: AppTextStyles.btnTextStyle,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    listener: (context, state) {
+                      if (state is ApiSuccessState) {
+                        Navigator.of(context)
+                            .pushNamed(routeDriverTrip);
+                      } else if (state is TimeOutExceptionState) {
+                        AppUtils().showLoginTimeOutDialog(context, () {
+                          Navigator.of(context, rootNavigator: true).pop();
+                        });
+                      } else if (state is ApiFailState) {
+                        Helper.getToastMsg(state.errorMessage);
+                      }
+                    },
                   ),
                 ],
               ),

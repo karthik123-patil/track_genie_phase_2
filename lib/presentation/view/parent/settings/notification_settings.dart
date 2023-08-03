@@ -5,7 +5,6 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
 import 'package:track_genie_phase_2/presentation/bloc_logic/bloc/parent/setting/notification_setting_bloc.dart';
-import 'package:track_genie_phase_2/presentation/bloc_logic/state/CommonState.dart';
 import 'package:track_genie_phase_2/presentation/widgets/custom_popups.dart';
 import 'package:track_genie_phase_2/presentation/widgets/notification_appbar.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
@@ -54,7 +53,7 @@ class NotificationSettingsScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ListTile(
+                /*ListTile(
                   title: Text(
                     AppStrings.strSetBusAddress,
                     style: AppTextStyles.detailsTextStyle,
@@ -67,8 +66,8 @@ class NotificationSettingsScreen extends StatelessWidget {
                     AppStrings.forwardImage,
                     scale: 1.5,
                   ),
-                ),
-                Padding(
+                ),*/
+                /*Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
                     children: [
@@ -78,7 +77,8 @@ class NotificationSettingsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                ),*/
+                const SizedBox(height: 20,),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: listData.length,

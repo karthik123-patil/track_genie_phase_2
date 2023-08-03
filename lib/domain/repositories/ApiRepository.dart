@@ -3,17 +3,28 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
+import 'package:track_genie_phase_2/domain/model/request/ScheduleLeaveRequest.dart';
+import 'package:track_genie_phase_2/domain/model/request/UpdateLatLongRequest.dart';
 import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
 import 'package:track_genie_phase_2/domain/model/response/StudentDataModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/TripStatusModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
 import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
+import 'package:track_genie_phase_2/domain/model/response/driver/get_schedule_list.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
+import 'package:track_genie_phase_2/domain/model/response/student/get_leaves_model.dart';
+import 'package:track_genie_phase_2/domain/model/response/student/notification_model.dart';
 
 import '../../data/datasources/network/RequestResponseInspector.dart';
 import '../../data/datasources/network/retrofitClient.dart';
+<<<<<<< Updated upstream
 import '../model/response/LastStopLatLongOfVehicleScheduleModel.dart';
 import '../model/response/LatLongOrderOfAllStopsOfVehicleScheduleModel.dart';
+=======
+import '../model/response/PostModel.dart';
+import '../model/response/driver/get_stops_with_time.dart';
+import '../model/response/driver/start_schedule_model.dart';
+>>>>>>> Stashed changes
 
 class ApiRepository {
   static final _sharedInstance = ApiRepository._internal();
@@ -41,6 +52,8 @@ class ApiRepository {
     return _sharedInstance;
   }
 
+
+
   Future<LoginResponse> authenticateUser(
       {required LoginRequest request,
       required String roleId,
@@ -50,14 +63,29 @@ class ApiRepository {
         .authenticateUser(request, roleId, uniqueId, mobileNo);
   }
 
-  Future<dynamic> getSchedulesVehicleListDriver(
-      {required String roleId}) async {
-    return await ApiRepository.client.getSchedulesVehicleListDriver(roleId);
+  Future<ScheduledVehicleList> getSchedulesVehicleListDriver(
+      {required String userId}) async {
+    return await ApiRepository.client.getSchedulesVehicleListDriver(userId);
   }
 
-  Future<dynamic> getSchedulesVehicleListAttendant(
-      {required String roleId}) async {
-    return await ApiRepository.client.getSchedulesVehicleListAttendant(roleId);
+  Future<ScheduledVehicleList> getSchedulesVehicleListAttendant(
+      {required String userId}) async {
+    return await ApiRepository.client.getSchedulesVehicleListAttendant(userId);
+  }
+
+  Future<StartVehicleSchedule> startVehicleScheduleByDriver(
+      {required String userId, required String strScheduleId}) async {
+    return await ApiRepository.client.startVehicleScheduleByDriver(userId, strScheduleId);
+  }
+
+  Future<StartVehicleSchedule> startVehicleScheduleByAttendant(
+      {required String userId, required String strScheduleId}) async {
+    return await ApiRepository.client.startVehicleScheduleByAttendant(userId, strScheduleId);
+  }
+
+  Future<StopsWithTimeList> getStopsWithTime(
+      {required String tripId}) async {
+    return await ApiRepository.client.getStopsWithTime(tripId);
   }
 
   Future<GetScheduleAndTripById>
@@ -109,5 +137,36 @@ class ApiRepository {
     required String stopId,
   }) async {
     return await ApiRepository.client.getStudentsStatusOfGivenStopOfGivenTrip(tripScheduleId,stopId);
+  }
+
+  Future<PostModel> updateLatLongWithTime(
+      {required UpdateLatLongRequest request}) async {
+    return await ApiRepository.client
+        .updateLatLongWithTime(request);
+
+  }
+
+  Future<PostModel> scheduleLeave(
+      {required ScheduleLeaveRequest request}) async {
+    return await ApiRepository.client
+        .scheduleLeave(request);
+  }
+
+  Future<GetScheduledLeave> getScheduledLeaveDates(
+      {required String userId, required String journeyId}
+      ) async {
+    return await ApiRepository.client.getScheduledLeaveDates(userId, journeyId);
+  }
+
+  Future<PostModel> cancelScheduledLeave(
+      {required String  userId, required String strJourney, required String date}) async {
+    return await ApiRepository.client
+        .cancelScheduledLeave(userId, strJourney, date);
+  }
+
+  Future<NotificationResModel> getLogOfPassengerStatus(
+      {required String userId}
+      ) async {
+    return await ApiRepository.client.getLogOfPassengerStatus(userId);
   }
 }

@@ -10,3 +10,6 @@ const String routeStudentInfo = "/StudentInformation";
 const String routeNotificationSetting = "/NotificationSettingsScreen";
 const String routeTest = "/test";
 const String routeDriverTrip = "/DriverTripScreen";
+const String routeStudentProfile = "/StudentProfileScreen";
+const String routeCancelLeave = "/CancelLeaveScreen";
+const String routeStudentNotification = "/StudentNotificationScreen";

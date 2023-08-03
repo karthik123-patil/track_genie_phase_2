@@ -28,6 +28,7 @@ class DriverTripCubit extends Cubit<CommonState> {
     getTripDetails();
   }
 
+<<<<<<< Updated upstream
   Map mapData = Map();
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
   Set<Marker> markers = {};
@@ -464,5 +465,17 @@ class StudentDetailsByStopCubit extends Cubit<CommonState> {
     final img = await pictureRecorder.endRecording().toImage(width, height);
     final data = await img.toByteData(format: ui.ImageByteFormat.png);
     return data!.buffer.asUint8List();
+=======
+  void getTripDetails() async {
+    emit(LoadingState());
+    TripStatusModel tripStatusModel = await ApiRepository.getInstance("")
+        .getTripDetails(tripScheduleId: '193');
+
+    if (tripStatusModel.responseStatus == true) {
+      emit(LoadedState(tripStatusModel));
+    } else {
+      emit(ApiFailState(tripStatusModel.responseMessage!));
+    }
+>>>>>>> Stashed changes
   }
 }

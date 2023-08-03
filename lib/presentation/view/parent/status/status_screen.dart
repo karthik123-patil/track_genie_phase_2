@@ -1,17 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:track_genie_phase_2/config/app_utils.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 import 'package:track_genie_phase_2/config/strings.dart';
-
-import 'dart:math' show cos, sqrt, asin;
-
-import 'package:track_genie_phase_2/presentation/widgets/custom_popups.dart';
-import 'package:track_genie_phase_2/presentation/widgets/status_appbar.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
+import '../../../widgets/parent_appbar.dart';
 
 class ParentStatusScreen extends StatelessWidget {
   final Completer<GoogleMapController> _controller = Completer();
@@ -35,11 +30,8 @@ class ParentStatusScreen extends StatelessWidget {
           target: LatLng(currentLocations.latitude, currentLocations.longitude));
     }
     return Scaffold(
-      appBar: StatusAppBar(
+      appBar: ParentAppBar(
         index: 0,
-        strTxt: (String val) {
-          //onClickOnLogout(val);
-        },
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

@@ -42,7 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
                 .authenticateUser(
                     request: request,
                     uniqueId: event.userID,
-                    roleId: '3',
+                    roleId:  event.roleId,
                     mobileNo: event.mobileNumber);
 
 
@@ -53,6 +53,7 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
               StorageUtil.instance.setStringValue(AppStrings.strPrefContactNo, res.data!.userPhoneNumber.toString());
               StorageUtil.instance.setStringValue(AppStrings.strPrefAddress, res.data!.userAddress.toString());
               StorageUtil.instance.setStringValue(AppStrings.strPrefPhoto, res.data!.userPhoto.toString());
+              StorageUtil.instance.setStringValue(AppStrings.strPrefEmail, res.data!.email.toString());
               String strRegisterAs = await StorageUtil.instance.getStringValue(AppStrings.strPrefRegisterAs);
               mapData[AppStrings.keyMapRegister] = strRegisterAs;
               mapData[AppStrings.keyMapMsg] = res.responseMessage;

@@ -11,7 +11,7 @@ class RegisterAsCubit extends Cubit<CommonState> {
     switch(roleId){
       case "3":
         StorageUtil.instance.setStringValue(AppStrings.strPrefRegisterAs, AppStrings.isStudent);
-      case "2":
+      case "4":
         StorageUtil.instance.setStringValue(AppStrings.strPrefRegisterAs, AppStrings.isDriver);
       case "5":
         StorageUtil.instance.setStringValue(AppStrings.strPrefRegisterAs, AppStrings.isAttendant);

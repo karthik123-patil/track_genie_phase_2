@@ -31,11 +31,6 @@ class BusInfoCubit extends Cubit<CommonState> {
             scheduleId: scheduleId,
           );
 
-          // TripStatusModel tripStatusModel = await ApiRepository.getInstance("")
-          //     .getTripDetails(tripScheduleId: '193');
-          //
-          // print(jsonEncode(tripStatusModel));
-
           if (res.responseStatus == true) {
             emit(LoadedState(res));
           } else {

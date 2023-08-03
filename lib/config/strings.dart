@@ -145,6 +145,7 @@ class AppStrings {
   static const strPrefContactNo = "USER_CONTACT";
   static const strPrefAddress = "USER_ADDRESS";
   static const strPrefPhoto = "USER_PHOTO";
+  static const strPrefEmail = "EMAIL";
   static const strPrefOneTimeLat = "ONE_TIME_LAT";
   static const strPrefOneTimeLong = "ONE_TIME_LONG";
   static const strPrefScreenSeen = "SCREEN_SEEN";
@@ -153,6 +154,7 @@ class AppStrings {
   static const strPrefErrorId = "ERROR_ID";
   static const strPrefErrorNo = "ERROR_NO";
   static const strPrefTimeOut = "TIME_OUT";
+  static const strPrefJourneyId = "JOURNEY_ID";
   static const strBusStatus = "BUS_NOT_REACHED";
 
   //trip screen text
@@ -208,6 +210,7 @@ class AppStrings {
   static String isAttendant = "Attendant";
   static String isAdmin = "Admin";
   static String keyMapRegister = "registerAs";
+  static String keySuccessMsg = "success";
   static String keyMapMsg = "msg";
   static String noInternetMsg = "No Internet Connection";
   static String timeOutMsg = "Connection Time out";

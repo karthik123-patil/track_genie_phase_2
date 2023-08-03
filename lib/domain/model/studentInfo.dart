@@ -4,13 +4,14 @@ class StudentInfo {
   String? strUniqueId;
   String? strAddress;
   String? strPhoto;
+  String? strEmail;
 
   StudentInfo(
       {this.strName,
         this.strContactNo,
         this.strUniqueId,
         this.strAddress,
-        this.strPhoto});
+        this.strPhoto, this.strEmail});
 
   StudentInfo.fromJson(Map<String, dynamic> json) {
     strName = json['strName'];
@@ -18,15 +19,17 @@ class StudentInfo {
     strUniqueId = json['strUniqueId'];
     strAddress = json['strAddress'];
     strPhoto = json['strPhoto'];
+    strEmail = json['strEmail'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['strName'] = this.strName;
-    data['strContactNo'] = this.strContactNo;
-    data['strUniqueId'] = this.strUniqueId;
-    data['strAddress'] = this.strAddress;
-    data['strPhoto'] = this.strPhoto;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['strName'] = strName;
+    data['strContactNo'] = strContactNo;
+    data['strUniqueId'] = strUniqueId;
+    data['strAddress'] = strAddress;
+    data['strPhoto'] = strPhoto;
+    data['strEmail'] = strEmail;
     return data;
   }
 }

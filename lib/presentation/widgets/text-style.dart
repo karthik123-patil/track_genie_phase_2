@@ -395,7 +395,7 @@ class AppTextStyles {
   );
 
   static TextStyle appBarTextStyle = const TextStyle(
-    color: AppColors.whiteColor,
+    color: AppColors.blackColor,
     fontSize: 16,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.2,

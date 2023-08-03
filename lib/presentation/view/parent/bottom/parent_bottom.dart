@@ -19,8 +19,8 @@ class ParentBottomScreen extends StatefulWidget {
 class _ParentBottomScreenState extends State<ParentBottomScreen> {
   final List _screens = [
     ParentStatusScreen(),
-    BusInfoScreen(),
-    ParentContactScreen(),
+    const BusInfoScreen(),
+    const ParentContactScreen(),
     ParentSettingScreen()
   ];
   int _currentIndex = 0;

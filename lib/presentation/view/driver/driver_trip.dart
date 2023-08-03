@@ -45,6 +45,7 @@ class DriverTripScreen extends StatelessWidget {
           appBar: DriverHomeAppBar(onClickLogOut: (String val) {
             // onClickOnLogOut(val);
           }),
+<<<<<<< Updated upstream
           body: BlocBuilder<DriverTripCubit, CommonState>(
             builder: (BuildContext context, state) {
               if (state is LoadingState) {
@@ -53,6 +54,12 @@ class DriverTripScreen extends StatelessWidget {
                 Map mapData = state.data as Map;
                 Set<Polyline> polyLines =
                 mapData['polyLines'] as Set<Polyline>;
+=======
+          body: BlocConsumer<DriverTripCubit,CommonState>(
+            builder: (BuildContext context, state) {
+              if(state is LoadedState) {
+                TripStatusModel statusModel = state.data as TripStatusModel;
+>>>>>>> Stashed changes
                 return Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -73,12 +80,20 @@ class DriverTripScreen extends StatelessWidget {
                             defaultPanelState: PanelState.OPEN,
                             body: Stack(
                               children: [
+<<<<<<< Updated upstream
                                 mapData['position'] == null
                                     ? Center(
                                     child: Text(
                                       "Loading...",
                                       style:
                                       AppTextStyles.appBarTextStyle,
+=======
+                                "null" == null
+                                    ? Center(
+                                    child: Text(
+                                      "Loading...",
+                                      style: AppTextStyles.appBarTextStyle,
+>>>>>>> Stashed changes
                                     ))
                                     : GoogleMap(
                                   liteModeEnabled: false,
@@ -86,6 +101,7 @@ class DriverTripScreen extends StatelessWidget {
                                   tiltGesturesEnabled: false,
                                   mapType: MapType.normal,
                                   myLocationEnabled: true,
+<<<<<<< Updated upstream
                                   initialCameraPosition: mapData[
                                   'initialCameraPosition'],
                                   markers: mapData['markers'],
@@ -94,6 +110,17 @@ class DriverTripScreen extends StatelessWidget {
                                     // _controller.complete(mapController);
                                   },
                                   onCameraMove: (position) {},
+=======
+                                  initialCameraPosition: initialCameraPosition,
+                                  markers: markers,
+                                  polylines: _polyLines,
+                                  onMapCreated: (mapController) {
+                                    // _controller.complete(mapController);
+                                  },
+                                  onCameraMove: (position) {
+
+                                  },
+>>>>>>> Stashed changes
                                 ),
                                 true
                                     ? Positioned(
@@ -101,6 +128,7 @@ class DriverTripScreen extends StatelessWidget {
                                   left: 10,
                                   child: ElevatedButton.icon(
                                     style: ElevatedButton.styleFrom(
+<<<<<<< Updated upstream
                                         backgroundColor:
                                         Colors.white,
                                         shape:
@@ -109,17 +137,28 @@ class DriverTripScreen extends StatelessWidget {
                                             BorderRadius
                                                 .circular(
                                                 30))),
+=======
+                                        backgroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(30))),
+>>>>>>> Stashed changes
                                     icon: const Icon(
                                       Icons.location_on_outlined,
                                       color: Colors.blue,
                                     ),
                                     onPressed: () async {
+<<<<<<< Updated upstream
                                       GoogleMapController
                                       googleMapController =
+=======
+                                      GoogleMapController googleMapController =
+>>>>>>> Stashed changes
                                       await _controller.future;
                                       googleMapController.animateCamera(
                                           CameraUpdate.newCameraPosition(
                                               CameraPosition(
+<<<<<<< Updated upstream
                                                   zoom: AppStrings()
                                                       .cameraZoom,
                                                   bearing: AppStrings()
@@ -130,6 +169,15 @@ class DriverTripScreen extends StatelessWidget {
                                                       mapData['position']
                                                           .latitude,
                                                       mapData['position']
+=======
+                                                  zoom: AppStrings().cameraZoom,
+                                                  bearing:
+                                                  AppStrings().cameraBearing,
+                                                  tilt: AppStrings().cameraTilt,
+                                                  target: LatLng(
+                                                      currentLocation!.latitude,
+                                                      currentLocation!
+>>>>>>> Stashed changes
                                                           .longitude))));
                                     },
                                     label: const Text(
@@ -137,14 +185,19 @@ class DriverTripScreen extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.blue,
                                           fontSize: 14,
+<<<<<<< Updated upstream
                                           fontWeight:
                                           FontWeight.w500),
+=======
+                                          fontWeight: FontWeight.w500),
+>>>>>>> Stashed changes
                                     ),
                                   ),
                                 )
                                     : Container()
                               ],
                             ),
+<<<<<<< Updated upstream
                             panelBuilder: (sc) =>
                                 BlocBuilder<DriverTripUpdateCubit, CommonState>(
                               builder: (BuildContext context, state) {
@@ -169,6 +222,53 @@ class DriverTripScreen extends StatelessWidget {
                                           .toString()),
                                       context);
                                 } else if (state is LoadingState) {
+=======
+                            panelBuilder: (sc) => _panel(
+                                sc,
+                                statusModel.data!.totalStops
+                                    .toString(),
+                                statusModel.data!.pickedCount
+                                    .toString(),
+                                statusModel.data!
+                                    .totalCountExcludingStudentsOnScheduledLeave
+                                    .toString(),
+                                statusModel.data!.list!.toList(),
+                                statusModel
+                                    .data!.passengerStatusMessage
+                                    .toString(),
+                                int.parse(statusModel
+                                    .data!.missedBusCount
+                                    .toString()),context),
+                            /*panelBuilder: (sc) => FutureBuilder(
+                            // future: getStopsDataWithTime(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<TripStatusModel> snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data!.responseStatus == true) {
+                                  return
+                                    StreamBuilder(
+                                    // stream: getSignInStream,
+                                      initialData: tripStatusModel,
+                                      builder: (context, snapshotStr) {
+                                        return _panel(
+                                            sc,
+                                            tripStatusModel.data!.totalStops
+                                                .toString(),
+                                            tripStatusModel.data!.pickedCount
+                                                .toString(),
+                                            tripStatusModel.data!
+                                                .totalCountExcludingStudentsOnScheduledLeave
+                                                .toString(),
+                                            snapshot.data!.data!.list!.toList(),
+                                            tripStatusModel
+                                                .data!.passengerStatusMessage
+                                                .toString(),
+                                            int.parse(tripStatusModel
+                                                .data!.missedBusCount
+                                                .toString()),context);
+                                      });
+                                } else {
+>>>>>>> Stashed changes
                                   return const Center(
                                     child: SizedBox(
                                       height: 30,
@@ -182,8 +282,25 @@ class DriverTripScreen extends StatelessWidget {
                                 } else {
                                   return Container();
                                 }
+<<<<<<< Updated upstream
                               },
                             ),
+=======
+                              } else {
+                                return const Center(
+                                  child: SizedBox(
+                                    height: 30,
+                                    width: 30,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.black,
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          ),*/
+>>>>>>> Stashed changes
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(18.0),
                                 topRight: Radius.circular(18.0)),
@@ -193,9 +310,16 @@ class DriverTripScreen extends StatelessWidget {
                     ],
                   ),
                 );
+<<<<<<< Updated upstream
               } else {
                 return Container();
               }
+=======
+              }else{
+                return Container();
+              }
+
+>>>>>>> Stashed changes
             },
           ),
           floatingActionButton: Column(
@@ -271,6 +395,7 @@ class DriverTripScreen extends StatelessWidget {
                   const SizedBox(
                     height: 5.0,
                   ),
+<<<<<<< Updated upstream
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -297,6 +422,64 @@ class DriverTripScreen extends StatelessWidget {
                                 color: Color.fromRGBO(0, 0, 0, .25),
                                 blurRadius: 16.0)
                           ],
+=======
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 0.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, left: 20, bottom: 5),
+              child: AnotherStepper(
+                stepperList: stopsData.map((item) {
+                  return StepperData(
+                      title:StepperText(
+                          item.scheduledArrivalTime.toString(),
+                          textStyle: AppTextStyles.busTimingStyle),
+                      subtitle: StepperText(item.stop!.stopName.toString(),
+                          textStyle: AppTextStyles.selectedItemStyle1),
+                      iconWidget: InkWell(
+                        onTap: () {
+                          // getStudentDetailsByStop(item.stop!.stopID.toString());
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              color: item.missedBusStudentsCount !=  0 ?  AppColors.grey500 :
+                              (item.pickedStudentsCount
+                                  .toString() !=
+                                  item.totalStudentsCountExcludingStudentsOnScheduledLeave
+                                      .toString() &&
+                                  item.pickedStudentsCount
+                                      .toString() !=
+                                      "0")? AppColors.pinkColor :
+                              (item.pickedStudentsCount
+                                  .toString() ==
+                                  item.totalStudentsCountExcludingStudentsOnScheduledLeave
+                                      .toString() &&
+                                  item.totalStudentsCountExcludingStudentsOnScheduledLeave
+                                      .toString() !=
+                                      "0")
+                                  ? AppColors.greenColor
+                                  : AppColors.bgColor,
+                              borderRadius:
+                              const BorderRadius.all(Radius.circular(30))),
+                          child: Center(
+                              child: Text(
+                                "${item.pickedStudentsCount.toString()}/${item.totalStudentsCountExcludingStudentsOnScheduledLeave.toString()}",
+                                style: TextStyle(
+                                    color: item.missedBusStudentsCount != 0 ?  AppColors.whiteColor : (item.pickedStudentsCount
+                                        .toString() ==
+                                        item.totalStudentsCountExcludingStudentsOnScheduledLeave
+                                            .toString())
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackColor,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Poppins"),
+                              )),
+>>>>>>> Stashed changes
                         ),
                         child: Text(
                           missedBusCount != 0

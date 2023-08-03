@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:track_genie_phase_2/config/colorConstant.dart';
 import 'package:track_genie_phase_2/presentation/widgets/text-style.dart';
 
+import '../route/router_constants.dart';
+
 
 class ParentAppBar extends StatefulWidget implements PreferredSizeWidget {
   final int index;
@@ -26,7 +28,7 @@ class _ParentAppBarState extends State<ParentAppBar> {
       actions: [
         InkWell(
             onTap: () {
-              //Navigator.of(context).push(MaterialPageRoute(builder: (context)=> NotificationScreen(index: widget.index)));
+              Navigator.of(context).pushNamed(routeStudentNotification);
             },
             child: Image.asset(
               'assets/images/notify_img.png',
@@ -78,10 +80,9 @@ class _ParentAppBarState extends State<ParentAppBar> {
       elevation: 8.0,
     ).then((value) {
       if (value == "Log Out") {
-
-        Navigator.of(context).pushNamed('/LoginScreen');
+        Navigator.of(context).pushNamed(routeLogin);
       }else{
-        //Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const StudentInformationScreen()));
+      Navigator.of(context).pushNamed(routeStudentInfo);
       }
     });
   }
