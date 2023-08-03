@@ -10,6 +10,8 @@ class RequestResponseInspector extends Interceptor {
     Helper.getErrorLog('Request: ${options.method} ${options.uri}');
     Helper.getErrorLog('Headers: ${options.headers}');
     Helper.getErrorLog('Body: ${options.data}');
+    CancelToken cancelToken=CancelToken();
+    options.cancelToken = cancelToken;
     return super.onRequest(options, handler);
   }
 

@@ -2,10 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
 import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
+import 'package:track_genie_phase_2/domain/model/response/LastStopLatLongOfVehicleScheduleModel.dart';
+import 'package:track_genie_phase_2/domain/model/response/StudentDataModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
 import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
 import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
 
+import '../../../domain/model/response/LatLongOrderOfAllStopsOfVehicleScheduleModel.dart';
 import '../../../domain/model/response/TripStatusModel.dart';
 
 part 'retrofitClient.g.dart';
@@ -46,11 +49,6 @@ abstract class RestClient {
     @Path("userId") String roleId,
   );
 
-  @POST("getLastStopLatLongOfVehicleSchedule/{scheduleId}")
-  Future<dynamic> getLastStopLatLongOfVehicleSchedule(
-    @Path("scheduleId") String roleId,
-  );
-
   @PUT("{operation}/{userId}/{val}")
   Future<dynamic> postNotificationSetting(
     @Path("operation") String operation,
@@ -59,11 +57,11 @@ abstract class RestClient {
   );
 
   @GET("getBusInfo/{userId}/{scheduleId}")
+
   Future<BusInfoModel> getBusInfo(
     @Path("userId") String userId,
     @Path("scheduleId") String scheduleId,
   );
-
 
   ///this all api use for drive trip module
   // at the time of ui load  -
@@ -72,34 +70,38 @@ abstract class RestClient {
   // getLatLongOrderOfAllStopsOfVehicleSchedule
 
   @GET("driverHomescreen/{tripScheduleId}")
-  Future<TripStatusModel> getTripDetails(
+  Future<TripStatusModel> getdriverHomescreen(
       @Path("tripScheduleId") String tripScheduleId);
 
   @GET("getLastStopLatLongOfVehicleSchedule/{scheduleId}")
-  Future<dynamic> getLastStopLatLong(@Path("scheduleId") String scheduleId);
+  Future<LastStopLatLongOfVehicleScheduleModel>
+      getLastStopLatLongOfVehicleSchedule(
+          @Path("scheduleId") String scheduleId);
 
   @GET("getLatLongOrderOfAllStopsOfVehicleSchedule/{scheduleId}")
-  Future<dynamic> getLatLongOrderOfAllStopsOfVehicleSchedule(@Path("scheduleId") String scheduleId);
+  Future<LatLongOrderOfAllStopsOfVehicleScheduleModel>
+      getLatLongOrderOfAllStopsOfVehicleSchedule(
+          @Path("scheduleId") String scheduleId);
 
-
-
+  @GET("getStudentsStatusOfGivenStopOfGivenTrip/{tripScheduleId}/{stopId}")
+  Future<StudentDataModel>
+      getStudentsStatusOfGivenStopOfGivenTrip(
+    @Path("tripScheduleId") String tripScheduleId,
+    @Path("stopId") String stopId,
+  );
 
   @GET("busReachedDestination/{tripId}")
   Future<dynamic> busReachedDestination(@Path("tripId") String tripId);
 
-
-
   @GET("getStudentDetailsHavingUniqueKey/{uniqueId}/{strOptions}/{strTripId}")
-  Future<dynamic> verifyStudentByUnique(@Path("uniqueId") String scheduleId,
+  Future<dynamic> verifyStudentByUnique(
+      @Path("uniqueId") String scheduleId,
       @Path("strOptions") String strOptions,
-      @Path("strTripId") String strTripId
-      );
+      @Path("strTripId") String strTripId);
 
   @GET("getStudentDetailsHavingQRcodeString/{qrCode}/{strOptions}/{strTripId}")
-  Future<dynamic> verifyStudentByQRCOde(@Path("qrCode") String scheduleId,
+  Future<dynamic> verifyStudentByQRCOde(
+      @Path("qrCode") String scheduleId,
       @Path("strOptions") String strOptions,
-      @Path("strTripId") String strTripId
-      );
-
-
+      @Path("strTripId") String strTripId);
 }

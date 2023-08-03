@@ -10,7 +10,6 @@ import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
 import 'package:track_genie_phase_2/presentation/view/auth/register_as_screen.dart';
 import 'package:track_genie_phase_2/presentation/view/common/first_slide.dart';
 import 'package:track_genie_phase_2/presentation/view/common/splashScreen.dart';
-import 'package:track_genie_phase_2/presentation/view/driver/driver_trip.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/bottom/parent_bottom.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/settings/student_information.dart';
 import 'package:track_genie_phase_2/presentation/view/parent/status/type_of_journey.dart';
@@ -18,6 +17,7 @@ import 'package:track_genie_phase_2/presentation/view/vehicle_scheduled.dart';
 
 import '../view/auth/login_screen.dart';
 import '../view/check_notification_test.dart';
+import '../view/driver/driver_trip.dart';
 import '../view/parent/settings/notification_settings.dart';
 import 'custom_route.dart';
 

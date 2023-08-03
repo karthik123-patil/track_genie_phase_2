@@ -4,7 +4,10 @@ class InitialState extends CommonState {}
 
 class ValidState extends CommonState {}
 
-class AlertState extends CommonState {}
+class AlertState extends CommonState {
+  final dynamic data;
+  AlertState(this.data);
+}
 
 class LoadingState extends CommonState {}
 
