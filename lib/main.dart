@@ -1,9 +1,10 @@
 import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:material_color_gen/material_color_gen.dart';
 import 'package:track_genie_phase_2/data/datasources/network/notification_service.dart';
 import 'package:track_genie_phase_2/presentation/route/router_constants.dart';
@@ -16,6 +17,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PushNotificationService().setupInteractedMessage();
   await Firebase.initializeApp();
+  final GoogleMapsFlutterPlatform mapsImplementation =
+      GoogleMapsFlutterPlatform.instance;
+  if (mapsImplementation is GoogleMapsFlutterAndroid) {
+    mapsImplementation.useAndroidViewSurface = true;
+  }
 
   await runZonedGuarded(() async => runApp(const MyApp()), (error, stack) {
     if (kDebugMode) {

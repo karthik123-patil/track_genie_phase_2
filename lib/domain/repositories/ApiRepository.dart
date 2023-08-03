@@ -4,6 +4,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:track_genie_phase_2/domain/model/request/LoginRequest.dart';
 import 'package:track_genie_phase_2/domain/model/response/GetScheduleAndTripById.dart';
+import 'package:track_genie_phase_2/domain/model/response/StudentDataModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/TripStatusModel.dart';
 import 'package:track_genie_phase_2/domain/model/response/auth/LoginResponse.dart';
 import 'package:track_genie_phase_2/domain/model/response/bus_info_model.dart';
@@ -11,11 +12,14 @@ import 'package:track_genie_phase_2/domain/model/response/school_contact.dart';
 
 import '../../data/datasources/network/RequestResponseInspector.dart';
 import '../../data/datasources/network/retrofitClient.dart';
+import '../model/response/LastStopLatLongOfVehicleScheduleModel.dart';
+import '../model/response/LatLongOrderOfAllStopsOfVehicleScheduleModel.dart';
 
 class ApiRepository {
   static final _sharedInstance = ApiRepository._internal();
 
   ApiRepository._internal();
+
 
   static Dio dio = Dio(BaseOptions(connectTimeout: 30 * 1000));
 
@@ -28,6 +32,7 @@ class ApiRepository {
           (X509Certificate cert, String host, int port) => true;
       return client;
     };
+
 
     dio.options.headers["Content-Type"] = "application/json";
     // dio.options.headers["authToken"] = token;
@@ -43,7 +48,6 @@ class ApiRepository {
       required String mobileNo}) async {
     return await ApiRepository.client
         .authenticateUser(request, roleId, uniqueId, mobileNo);
-
   }
 
   Future<dynamic> getSchedulesVehicleListDriver(
@@ -69,20 +73,41 @@ class ApiRepository {
   }
 
   Future<GetSchoolContacts> postNotificationSetting(
-      {required String operation, required String userId, required String val}) async {
-    return await ApiRepository.client.postNotificationSetting(operation, userId, val);
+      {required String operation,
+      required String userId,
+      required String val}) async {
+    return await ApiRepository.client
+        .postNotificationSetting(operation, userId, val);
   }
 
   Future<BusInfoModel> getBusInfo(
-      { required String userId, required String scheduleId}) async {
-    return await ApiRepository.client.getBusInfo( userId, scheduleId);
+      {required String userId, required String scheduleId}) async {
+    return await ApiRepository.client.getBusInfo(userId, scheduleId);
   }
-  Future<TripStatusModel> getTripDetails(
+
+  Future<TripStatusModel> getdriverHomescreen(
       {required String tripScheduleId}) async {
-    return await ApiRepository.client.getTripDetails(tripScheduleId);
+    return await ApiRepository.client.getdriverHomescreen(tripScheduleId);
   }
-  Future<TripStatusModel> trackVehicleByStops(
-      {required String tripScheduleId}) async {
-    return await ApiRepository.client.getTripDetails(tripScheduleId);
+
+  Future<LastStopLatLongOfVehicleScheduleModel>
+      getLastStopLatLongOfVehicleSchedule({required String scheduleId}) async {
+    return await ApiRepository.client
+        .getLastStopLatLongOfVehicleSchedule(scheduleId);
+  }
+
+  Future<LatLongOrderOfAllStopsOfVehicleScheduleModel>
+      getLatLongOrderOfAllStopsOfVehicleSchedule(
+          {required String scheduleId}) async {
+    return await ApiRepository.client
+        .getLatLongOrderOfAllStopsOfVehicleSchedule(scheduleId);
+  }
+
+  Future<StudentDataModel>
+      getStudentsStatusOfGivenStopOfGivenTrip({
+    required String tripScheduleId,
+    required String stopId,
+  }) async {
+    return await ApiRepository.client.getStudentsStatusOfGivenStopOfGivenTrip(tripScheduleId,stopId);
   }
 }

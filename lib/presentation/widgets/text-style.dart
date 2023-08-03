@@ -179,6 +179,15 @@ class AppTextStyles {
     fontFamily: "Montserrat",
   );
 
+  static TextStyle selectedItemStyle1 = const TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.2,
+    fontStyle: FontStyle.normal,
+    fontFamily: "Montserrat",
+  );
+
   static TextStyle stepperDataStyle = const TextStyle(
     color: AppColors.blackColor,
     fontSize: 12,
